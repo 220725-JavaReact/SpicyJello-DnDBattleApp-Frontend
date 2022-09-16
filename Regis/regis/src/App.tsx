@@ -1,12 +1,11 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { SignUp } from './components/SignUpForm';
 
 function App() {
-  return (
-    <SignUp/>
-  );
+   return (
+     <App />
+   );
 }
 
 export default App;
