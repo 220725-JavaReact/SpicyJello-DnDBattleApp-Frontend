@@ -9,6 +9,8 @@ import { store } from './shared/Redux/store';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import IndexBox from './components/IndexBox/IndexBox';
 import RegistrationBox from './components/RegistrationBox/RegistrationBox';
+import DashboardBox from './components/DashboardBox/DashboardBox';
+import GameBox from './components/GameBox/GameBox';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -21,6 +23,8 @@ root.render(
           <Route path="/" element={<IndexBox />} />
           <Route path="/login" element={<LoginBox />} />
           <Route path="/register" element={<RegistrationBox />} />
+          <Route path="/dashboard" element={<DashboardBox />} />
+          <Route path="/game" element={<GameBox />} />
         </Routes>
       </BrowserRouter>
     </Provider>
