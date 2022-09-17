@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { IPlayer } from "../../models/Player";
 import PlayerBox from "../PlayerBox/PlayerBox";
@@ -6,18 +7,36 @@ function PlayerList()
 { 
     const[counter,setCounter]=useState(0);
     const[newPlayer,setNewPlayer]=useState<IPlayer>({
-        damage:0,
+         
+        name:"",
+        email:"",
+        username:"",
+        password:"",
         health:0,
-        img:"",
-        level:0,
-        name:""
+        gold:0,
+        listofPlayer:[]
         });
     //this will be a list of IPlayer[]
 
-    const [listOfPlayer ,setListofPlayer]=useState<IPlayer[]>([ ]);
-        useEffect()={
-            
-        }
+    const [listOfPlayer ,setListofPlayer]=useState<IPlayer[]>([]);
+        useEffect(()=>{
+            axios.get<IPlayer[]>("http://localhost:8080/api/users")
+            .then(response=>{
+                console.log(response.data);
+                setListofPlayer(response.data);
+            })
+        },[])//empaty asrray as second paratmer iwll prevent an infinite
+    
+
+
+
+    function handleButtonClick()
+    {
+        console.log("detected click from a component");
+        setCounter(counter+1);
+    }
+
+
 
     function UpdateName(event:React.ChangeEvent<HTMLInputElement>)
     {
@@ -26,28 +45,23 @@ function PlayerList()
         setNewPlayer(newPlayer);
         console.log(newPlayer.name);
     }
-    function UpdateLevel(event:any)
+    function UpdateEmail(event:any)
     {
-        newPlayer.level=event.target.value;
+        newPlayer.email=event.target.value;
         setNewPlayer(newPlayer);
     }
 
-    function UpdateHealth(event:any)
+    function UpdateUserName(event:any)
     {
-        newPlayer.health=event.target.value;
+        newPlayer.username=event.target.value;
         setNewPlayer(newPlayer);
     }
-    function UpdateDamage(event:any)
+    function UpdatePassword(event:any)
     {
-        newPlayer.damage=event.target.value;
+        newPlayer.password=event.target.value;
         setNewPlayer(newPlayer);
     }
-    function UpdateImage(event:any)
-    {
-        newPlayer.damage=event.target.value;
-        setNewPlayer(newPlayer);
-    }
-
+  
     function onSubmit(event:React.FormEvent<HTMLFormElement>)
     {
         event.preventDefault();
@@ -55,7 +69,13 @@ function PlayerList()
         // listOfPlayer.push(newPlayer);
         setListofPlayer([...listOfPlayer,newPlayer]);
         console.log(listOfPlayer);
+        //logic to do a post request and add the player object
+        axios.post<IPlayer>("http//:localhost:8080/api/users",newPlayer)
+        .then(response=> {
+            console.log(response);
+        })
     }
+
 /**
  * step by stp proces to make react forms work in react 
  * -each input will be attached t oa function
@@ -66,22 +86,22 @@ function PlayerList()
         <form className="form-grid" onSubmit={onSubmit}>
             <label>Name </label>
             <input type="text" onChange={UpdateName}/>
-            <label>level </label>
-            <input type="number"onChange={UpdateLevel}/>
-            <label>damage </label>
-            <input type="number"onChange={UpdateDamage}/>        
-            <label>health </label>
-            <input type="text"onChange={UpdateHealth}/>
-            <label>Image </label>
-            <input type="text"onChange={UpdateImage}/><div></div>
+            <label>Email </label>
+            <input type="text"onChange={UpdateEmail}/>
+            <label>UserName </label>
+            <input type="text"onChange={UpdateUserName}/> 
+            <label>Password </label>
+            <input type="text"onChange={UpdatePassword}/><div></div>
            
-            <input className="btn"type ="Submit" value ="Submit "/>
+            <input className="btn"type ="Submit" value ="Register "/>
           </form>
+
+
           <h3>Player List</h3>
           <div className="list-grid">
                 {
                     listOfPlayer.map((player)=>{
-                        return <PlayerBox key={player.name}{ ...player}/>
+                        return <PlayerBox key={player.id}{ ...player} counter={counter}onButtonClick={handleButtonClick}/>
                     })
                 }
           </div>

@@ -22,20 +22,20 @@ function Counter()
 //conditional renderign ih which we can dymatically show a different view of the component base on some condition
 //youjust have multiple return satement
 
-    // if(!show)
-    // {
-    //     return<div>
-    //         <button onClick={showComponent}>Click here to show player counter</button>
-    //     </div>
-    // }
-    // else
-    // {
-    //     return <div>
-    //     <p>current counter:{count}</p>
-    //     <button onClick={AddCounter}>+</button>
+    if(!show)
+    {
+        return<div>
+            <button onClick={showComponent}>Click here to show player counter</button>
+        </div>
+    }
+    else
+    {
+        return <div>
+        <p>current counter:{count}</p>
+        <button onClick={AddCounter}>+</button>
 
-    //       </div>
-    // }
+          </div>
+    }
     return <div>
         <button onClick={showComponent}>click me tho show coutner </button>
         {

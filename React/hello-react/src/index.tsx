@@ -3,13 +3,15 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import PlayerBox from './components/PlayerBox/PlayerBox';
 import PlayerList from './components/PlayerList/PlayerList';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Login, Store } from '@mui/icons-material';
+import { Login, MoneySharp, Store } from '@mui/icons-material';
 import NavBar from './Shared/NavBar/NavBar';
 import { Provider } from 'react-redux';
 import { store } from './Shared/Redux/store';
+import LogIn from './components/LogIn/LogIn';
+import WeaponList from './components/WeaponList/WeaponList';
+import MonsterList from './components/MonsterList/MonsterList';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
@@ -26,11 +28,13 @@ root.render(
 
 <Routes>
   <Route path="/" element ={<App/>}/>
-  {/**<app/> */}
+  <Route path ="/playerlogin" element={<LogIn/>}/>
   <Route path="/playerlist" element ={<PlayerList/>}/>
-  <Route path="/login" element ={<Login/>}/>
-  
+  <Route path="/weapon" element ={<WeaponList/>}/>
+  <Route path="/monster" element ={<MonsterList/>}/>
+
 </Routes>
+
 </BrowserRouter>
 </Provider>
    </React.StrictMode>

@@ -1,10 +1,12 @@
-export interface IPlayer
-{
-    img:string,
-    name:string,
-    level:number,
-    health:number,
-    damage:number,
-    speed?:number
 
+export interface IPlayer
+{   id?:number,
+    name:string,
+    email:string,
+    username:string,
+    password:string,
+    health:number,
+    gold:number,
+    listofPlayer?:IPlayer[]
+    
 }

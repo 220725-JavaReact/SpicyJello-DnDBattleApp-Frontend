@@ -9,8 +9,3 @@ export interface IPlayer
     listofPlayer:IPlayer[]
 
 }
-export interface IPlay{
-    sprite:{
-        font_default:string
-    }
-}

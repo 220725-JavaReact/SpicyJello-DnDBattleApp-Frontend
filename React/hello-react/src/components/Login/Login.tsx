@@ -1,33 +1,51 @@
-import { LineAxisOutlined } from "@mui/icons-material";
-import React, { useState } from "react";
+import axios from "axios";
+import { useState } from "react";
+import { IPlayer } from "../../models/Player";
 import { useAppDispatch } from "../../Shared/Redux/Hooks";
-import { setPlayer } from "../../Shared/Redux/PlayerSlice";
+import { setPlayer } from "./PlayerSlice";
 
-function Login()
-{//setting up redux for this component
-    const dispatch=useAppDispatch();
-    //================================
-    const [playerId,setPlayerId]=useState(0);
-    function updateTrainer(e:React.ChangeEvent<HTMLInputElement>)
-    {
+function LogIn()
+{
+
+    const dispatch = useAppDispatch();
+    //==============
+
+    const [playerId, setPlayerId] = useState(0);
+
+    function updatePlayer(e:React.ChangeEvent<HTMLInputElement>) {
+
         setPlayerId(+e.target.value);
+
         console.log(playerId);
-
+        
     }
-    function onSubmit(e:React.FormEvent<HTMLFormElement>)
-    {
+
+    function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        //axios.get<IPlayerl>(http : api link here id=${palyerId}),then(resposn>{console.log(response);})
-        //logic 
-        dispatch(setPlayer(response.data))
+
+        axios.get<IPlayer>(`http://localhost:8080/api/users?id=${playerId}`)
+            .then(response => {
+                console.log(response);
+
+                //Logic to save information to our Redux Store specifically our trainer state
+                dispatch(setPlayer(response.data));
+                
+            })
     }
+ 
 
-    <div>
+
+    return <div>
         <form className="form-grid" onSubmit={onSubmit}>
-            <label>ID </label>
-            <input className="btn" type ="button" value="submit" />
-
+            <label>UserName</label>
+            <input type="text" onChange={updatePlayer}/>
+            <label>Password</label>
+            <input type="text" onChange={updatePlayer}/>
+           
+            <div></div>
+            <input className="btn" type="submit" value="Login"/>
         </form>
-    </div>
+    </div>;
 }
-export default Login;
+
+export default LogIn;

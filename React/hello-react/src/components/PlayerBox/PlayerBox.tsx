@@ -4,16 +4,25 @@ import './PlayerBox.css';
  * 
  * will displ
  */
-function PlayerBox(props:IPlayer)
+interface IProps extends IPlayer
+{
+    counter?:number,
+    onButtonClick?():void
+}
+
+function PlayerBox(props:IProps)
 {
 
     return <div className="Container">
-       <img src ={props.img}/>
-       <p>Name : {props.name}</p>
-       <p>Level : {props.level}</p>
-       <p>Health : {props.health}</p>
-       <p>Damage : {props.damage}</p>
        
+       <p>Name : {props.name}</p>
+       <p>Email : {props.email}</p>
+       <p>Username : {props.username}</p>
+       <p>Password : {props.password}</p>
+       <p>Health: {props.health}</p>
+       
+       <p>Gold: {props.gold}</p>
+       <button onClick={props.onButtonClick}>+</button>
        </div>
 }
 export default PlayerBox;

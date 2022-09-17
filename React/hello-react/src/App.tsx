@@ -4,31 +4,37 @@ import './App.css';
 import PlayerBox from './components/PlayerBox/PlayerBox';
 import { IPlayer } from './models/Player';
 import Counter from './components/Counter/Counter';
+import { Login } from '@mui/icons-material';
 
 function App() {
   const playerObj1:IPlayer={
-
-    damage :123,
-    health:548,
-    img:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/132.png",
-    level: 10,
-    name: "Mortes"
-  }
+    id:1,
+    name:"wint",
+    health:100,
+    username: "wint",
+    email :"wint@gamil.com",
+    password:"wintkayt",
+    gold:100
+      }
 const listOfPlayer:IPlayer[]=[
 {
- 
-  damage:80,
+  id:2,
+  name:"wint",
   health:100,
-  img:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/132.svg",
-  level: 20,
-  name:"Abra"
-},
+  username: "wint",
+  email :"wint@gamil.com",
+  password:"wintkayt",
+  gold:100
+  },
 {
-  damage:100,
-  health:20,
-  img:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/132.svg",
-  level:15,
-  name:"Ekans"
+  id:3,
+  name:"kay",
+  health:100,
+  username: "wint",
+  email :"wint@gamil.com",
+  password:"wintkayt",
+  gold:100
+  
 }
 ]
 
@@ -54,8 +60,8 @@ const somestring  ="This is a varibale ts being displayed"
 
       {helloworldElement}
       {somestring}
-      <PlayerBox damage={150} health= {100} img = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/132.png" level={10} name="Pikachu" /> 
-     
+      <PlayerBox health={100} gold={100} username="kay" password="kay" name="Pikachu" email='win@gmail.com' id={4}/> 
+      
 
     { /** list = [1,2,3,4] 
      * list .map((element) => {
@@ -65,7 +71,7 @@ const somestring  ="This is a varibale ts being displayed"
      * you must supply key attribute for each item
      * generally just using some uiquely identifiable property in the list will be perfect (ex:id)
     */}
-
+      
       <PlayerBox {...playerObj1}/>
       {
         listOfPlayer.map((player) => {
