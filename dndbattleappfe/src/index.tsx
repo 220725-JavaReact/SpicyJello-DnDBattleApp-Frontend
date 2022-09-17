@@ -1,17 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import 'bootstrap/dist/css/bootstrap.css';
 import reportWebVitals from './reportWebVitals';
-import RESTTest from './components/RESTTest/RESTTest';
+import LoginBox from './components/LoginBox/LoginBox';
+import { Provider } from 'react-redux';
+import { store } from './shared/Redux/store';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import IndexBox from './components/IndexBox/IndexBox';
+import RegistrationBox from './components/RegistrationBox/RegistrationBox';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
-    <RESTTest />
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<IndexBox />} />
+          <Route path="/login" element={<LoginBox />} />
+          <Route path="/register" element={<RegistrationBox />} />
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 
