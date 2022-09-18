@@ -11,6 +11,7 @@ function MonsterList()
         Gameid: 0,
         Source:"",
         Modifier:"",
+        name:"",
         listofMonsters:[]
 
 

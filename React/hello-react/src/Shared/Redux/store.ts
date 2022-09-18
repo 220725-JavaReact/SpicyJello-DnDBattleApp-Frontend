@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import PlayerSlice from "../../components/LogIn/PlayerSlice";
+import MonsterSlice from "../../components/MonsterRating/MonsterSlice";
 export const store=configureStore
 ({
     reducer:{
-      player:PlayerSlice
+      player:PlayerSlice,
+      monster:MonsterSlice
     }
 })
 /**

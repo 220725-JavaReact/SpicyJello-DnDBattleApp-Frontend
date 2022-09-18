@@ -12,6 +12,7 @@ import { store } from './Shared/Redux/store';
 import LogIn from './components/LogIn/LogIn';
 import WeaponList from './components/WeaponList/WeaponList';
 import MonsterList from './components/MonsterList/MonsterList';
+import MonsterRating from './components/MonsterRating/MonsterRating';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
@@ -31,7 +32,7 @@ root.render(
   <Route path ="/playerlogin" element={<LogIn/>}/>
   <Route path="/playerlist" element ={<PlayerList/>}/>
   <Route path="/weapon" element ={<WeaponList/>}/>
-  <Route path="/monster" element ={<MonsterList/>}/>
+  <Route path="/monster" element ={<MonsterRating/>}/>
 
 </Routes>
 

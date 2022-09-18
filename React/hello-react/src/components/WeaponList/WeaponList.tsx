@@ -20,7 +20,7 @@ function WeaponList()
 
 const[listofWeapons,setListofWeapon]=useState<IWeapon[]>([]);
 useEffect(()=>{
-    axios.get<IWeapon[]>("http://localhost:8080/api/weapons")
+    axios.get<IWeapon[]>("http://www.dnd5eapi.co/apimonsters?challenge_rating=0.125")
     .then(response=>{
         console.log(response.data);
         setListofWeapon(response.data);
@@ -58,14 +58,15 @@ function onSubmit(event:React.FormEvent<HTMLFormElement>)
 return <div>
 <h3 className="addweapon">Add Weapon </h3>
 
-<form className="form-grid" onSubmit={onSubmit}>
+        <form className="form-grid" onSubmit={onSubmit}>
             <label>Source </label>
             <input type="text" onChange={UpdatSource}/>
             <label>Modifier </label>
             <input type="text"onChange={UpdateModifier}/>
             <div></div>
             <input className="btn"type ="Submit" value ="Register "/>
-          </form>
+        </form>
+
 </div>
 
 }
