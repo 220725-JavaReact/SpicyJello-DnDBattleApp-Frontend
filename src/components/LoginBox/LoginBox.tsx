@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { ILoginInfo } from "../../models/LoginInfo";
+import { ILoginInfo } from "../../models/User";
 import { IUser } from "../../models/User";
 import { useAppDispatch, useAppSelector } from "../../shared/Redux/hook";
 import { selectUser, setUser } from "./UserSlice";
