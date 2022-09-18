@@ -1,0 +1,20 @@
+.Container{
+border:2px solid black;
+border-radius: 10px;
+max-width: 15rem;
+max-height: 20rem;
+text-align:center;
+
+margin :1rem;
+box-shadow: rgb(0, 0, 0,0.35 )10px 10px 10px;
+
+}
+/*wer are slect all the neste elelment*/
+.Container >*
+{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.2rem;
+}
+img{
+    border-bottom: 2px solid black;
+}
