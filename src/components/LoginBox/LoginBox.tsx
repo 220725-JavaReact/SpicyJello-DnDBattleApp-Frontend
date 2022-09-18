@@ -29,7 +29,7 @@ function LoginBox() {
                 dispatch(setUser(response.data));
             });
     }
-    if (user.username !== "") return <Navigate replace to="/dashboard" />;
+    if (user.id > 0) return <Navigate replace to="/dashboard" />;
     else return <div id="login_box" className="d-flex align-items-center justify-content-center">
         <form onSubmit={onSubmit} className="col-lg-2">
             <div className="form-group">

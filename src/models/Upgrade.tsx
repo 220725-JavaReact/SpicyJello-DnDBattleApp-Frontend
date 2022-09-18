@@ -1,7 +1,7 @@
 import { IUser } from "./User";
 
 export interface IUpgrade {
-    id?: number,
+    id: number,
     name: string,
     description: string,
     effect: string,

@@ -3,7 +3,7 @@ import { IUpgrade } from "./Upgrade"
 import { IWeapon } from "./Weapon"
 
 export interface IUser {
-    id?: number,
+    id: number,
     name: string,
     email: string,
     username: string,

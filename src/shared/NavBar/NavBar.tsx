@@ -1,6 +1,7 @@
 import { Link, Navigate } from "react-router-dom";
 import { resetUser, selectUser } from "../../components/LoginBox/UserSlice";
 import { useAppDispatch, useAppSelector } from "../Redux/hook";
+import "./NavBar.css";
 
 function NavBar() {
     const dispatch = useAppDispatch();

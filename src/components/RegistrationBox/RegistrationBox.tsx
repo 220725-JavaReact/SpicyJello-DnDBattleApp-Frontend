@@ -10,6 +10,7 @@ function RegistrationBox() {
     const dispatch = useAppDispatch();
     const user = useAppSelector(selectUser);
     const [newUser, setNewUser] = useState<IUser>({
+        id: 0,
         name: "",
         email: "",
         username: "",
@@ -42,7 +43,7 @@ function RegistrationBox() {
                 dispatch(setUser(response.data));
             })
     }
-    if (user.username !== "") return <Navigate replace to="/dashboard" />;
+    if (user.id > 0) return <Navigate replace to="/dashboard" />;
     else return <div id="registration_box" className="d-flex align-items-center justify-content-center">
         <form onSubmit={onSubmit} className="col-lg-4">
             <div className="form-group">
