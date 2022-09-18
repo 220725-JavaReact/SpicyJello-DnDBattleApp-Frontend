@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { IUser } from "../../models/User";
 import { useAppDispatch, useAppSelector } from "../../shared/Redux/hook";
 import { selectUser, setUser } from "../LoginBox/UserSlice";
@@ -92,6 +92,7 @@ function RegistrationBox() {
                 </small>
             </div>
             <input type="submit" className="btn btn-primary" value="Submit" />
+            <Link to="/" className="btn btn-primary">Cancel</Link>
         </form>
     </div>;
 }

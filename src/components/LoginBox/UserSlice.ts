@@ -28,7 +28,7 @@ const userSlice = createSlice({
             state.upgrades = action.payload.upgrades;
             state.weapons = action.payload.weapons;
         },
-        reset: (state) => {
+        resetUser: (state) => {
             state.id = 0;
             state.name = "";
             state.email = "";
@@ -41,6 +41,6 @@ const userSlice = createSlice({
         }
     }
 });
-export const { setUser, reset } = userSlice.actions;
+export const { setUser, resetUser } = userSlice.actions;
 export const selectUser = (state: RootState) => state.user;
 export default userSlice.reducer;

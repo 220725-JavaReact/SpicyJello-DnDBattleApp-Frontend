@@ -5,7 +5,7 @@ import { IUser } from "../../models/User";
 import { useAppDispatch, useAppSelector } from "../../shared/Redux/hook";
 import { selectUser, setUser } from "./UserSlice";
 import "./LoginBox.css";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 function LoginBox() {
     const dispatch = useAppDispatch();
@@ -51,6 +51,7 @@ function LoginBox() {
                 />
             </div>
             <input type="submit" className="btn btn-primary" value="Login" />
+            <Link to="/" className="btn btn-primary">Back</Link>
         </form>
     </div>;
 }
