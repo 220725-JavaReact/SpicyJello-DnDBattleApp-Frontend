@@ -61,6 +61,9 @@ function GameBox() {
         return result;
     }
     function doTurn() {
+        if (status.includes("Game over")) {
+            return;
+        }
         if (character.hit_points < 1) {
             axios.post<IGame>("http://spicyjellodndbattleappbe-eb-env.eba-k3zphm3n.us-east-1.elasticbeanstalk.com/api/games", game)
                 .then(response => {
@@ -120,18 +123,18 @@ function GameBox() {
         setTurn(!playerTurn);
     }
     if (user.id < 1) return <Navigate replace to="/" />;
-    else return <div id="game_box">
+    else return <div className="box">
         <NavBar />
-        <div onClick={doTurn} id="game" className="container">
+        <div onClick={doTurn} className="row align-items-center justify-content-center content">
             <div className="col-md-12 text-center">
                 <div>{status}</div>
-                <div className="row align-self-center">
+                <div className="row align-items-center justify-content-center">
                     <div className="col-md-6">
-                        <p>Character class: {character.class}</p>
+                        <p>{character.class}</p>
                         <p>Hit points: {character.hit_points}</p>
                     </div>
                     <div className="col-md-6">
-                        <p>Monster name: {monster.name}</p>
+                        <p>{monster.name}</p>
                         <p>Hit points: {monster.hit_points}</p>
                     </div>
                 </div>
