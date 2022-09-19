@@ -15,6 +15,7 @@ import GameBox from './components/GameBox/GameBox';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+document.title = "DnD Battle App";
 root.render(
   <React.StrictMode>
     <Provider store={store}>

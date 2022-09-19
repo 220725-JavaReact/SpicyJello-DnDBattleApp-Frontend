@@ -12,3 +12,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.box {
+  height: 90vh;
+  width: 100%;
+}
+
+.content {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 2%;
+  padding: 2vh;
+}
