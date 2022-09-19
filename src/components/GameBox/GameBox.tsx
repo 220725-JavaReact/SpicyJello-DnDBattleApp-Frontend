@@ -55,7 +55,7 @@ function GameBox() {
         for (let i = 0; i < +expressionArray[0]; i++) {
             result += Math.floor(Math.random() * +expressionArray[1]) + 1;
         }
-        if (expressionArray.length == 3) {
+        if (expressionArray.length === 3) {
             result += +expressionArray[2];
         }
         return result;
@@ -68,7 +68,7 @@ function GameBox() {
             axios.post<IGame>("http://spicyjellodndbattleappbe-eb-env.eba-k3zphm3n.us-east-1.elasticbeanstalk.com/api/games", game)
                 .then(response => {
                     game.monsters.map((monster) => {
-                        if (response.data.id != undefined) {
+                        if (response.data.id !== undefined) {
                             monster.game = {
                                 id: response.data.id
                             };
@@ -113,7 +113,7 @@ function GameBox() {
         } else {
             const actionIndex = Math.floor(Math.random() * monster.actions.length);
             const action = monster.actions[actionIndex];
-            if (rollDice("1d20+" + "1") >= character.armor_class) {
+            if (rollDice("1d20+1") >= character.armor_class) {
                 const damage = rollDice("1d4+1");
                 character.hit_points -= damage;
                 setCharacter(character);
