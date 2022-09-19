@@ -55,17 +55,20 @@ function GameBox() {
         for (let i = 0; i < +expressionArray[0]; i++) {
             result += Math.floor(Math.random() * +expressionArray[1]) + 1;
         }
-        if (expressionArray.length == 3) {
+        if (expressionArray.length === 3) {
             result += +expressionArray[2];
         }
         return result;
     }
     function doTurn() {
+        if (status.includes("Game over")) {
+            return;
+        }
         if (character.hit_points < 1) {
             axios.post<IGame>("http://spicyjellodndbattleappbe-eb-env.eba-k3zphm3n.us-east-1.elasticbeanstalk.com/api/games", game)
                 .then(response => {
                     game.monsters.map((monster) => {
-                        if (response.data.id != undefined) {
+                        if (response.data.id !== undefined) {
                             monster.game = {
                                 id: response.data.id
                             };
@@ -110,7 +113,7 @@ function GameBox() {
         } else {
             const actionIndex = Math.floor(Math.random() * monster.actions.length);
             const action = monster.actions[actionIndex];
-            if (rollDice("1d20+" + "1") >= character.armor_class) {
+            if (rollDice("1d20+1") >= character.armor_class) {
                 const damage = rollDice("1d4+1");
                 character.hit_points -= damage;
                 setCharacter(character);
@@ -120,19 +123,21 @@ function GameBox() {
         setTurn(!playerTurn);
     }
     if (user.id < 1) return <Navigate replace to="/" />;
-    else return <div id="game_box">
+    else return <div className="box">
         <NavBar />
-        <div onClick={doTurn} id="game" className="container">
-            <div className="col-md-12 text-center">
-                <div>{status}</div>
-                <div className="row align-self-center">
-                    <div className="col-md-6">
-                        <p>Character class: {character.class}</p>
-                        <p>Hit points: {character.hit_points}</p>
-                    </div>
-                    <div className="col-md-6">
-                        <p>Monster name: {monster.name}</p>
-                        <p>Hit points: {monster.hit_points}</p>
+        <div className="container">
+            <div onClick={doTurn} className="row align-items-center justify-content-center content game">
+                <div className="col-md-12 text-center">
+                    <div>{status}</div>
+                    <div className="row align-items-center justify-content-center">
+                        <div className="col-md-6">
+                            <p>{character.class}</p>
+                            <p>Hit points: {character.hit_points}</p>
+                        </div>
+                        <div className="col-md-6">
+                            <p>{monster.name}</p>
+                            <p>Hit points: {monster.hit_points}</p>
+                        </div>
                     </div>
                 </div>
             </div>

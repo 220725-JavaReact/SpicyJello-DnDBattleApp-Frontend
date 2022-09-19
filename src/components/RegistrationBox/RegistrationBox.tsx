@@ -4,7 +4,6 @@ import { Link, Navigate } from "react-router-dom";
 import { IUser } from "../../models/User";
 import { useAppDispatch, useAppSelector } from "../../shared/Redux/hook";
 import { selectUser, setUser } from "../LoginBox/UserSlice";
-import "./RegistrationBox.css";
 
 function RegistrationBox() {
     const dispatch = useAppDispatch();
@@ -41,8 +40,9 @@ function RegistrationBox() {
             })
     }
     if (user.id > 0) return <Navigate replace to="/dashboard" />;
-    else return <div id="registration_box" className="d-flex align-items-center justify-content-center">
-        <form onSubmit={onSubmit} className="col-lg-4">
+    else return <div className="row align-items-center justify-content-center box">
+        <form onSubmit={onSubmit} className="col-md-3 content">
+            <h1 className="text-center">DnD Battle App</h1>
             <div className="form-group">
                 <label htmlFor="name" className="form-label">Name</label>
                 <input type="text" name="name" id="name" className="form-control"
@@ -52,7 +52,9 @@ function RegistrationBox() {
             </div>
             <div className="form-group">
                 <label htmlFor="email" className="form-label">Email</label>
-                <input type="text" name="email" id="name" className="form-control"
+                <input type="text" name="email" id="name"
+                    pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+                    className="form-control"
                     required
                     onChange={updateEmail}
                 />
