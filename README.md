@@ -1,4 +1,6 @@
 # SpicyJello-DnDBattleApp-Frontend
+[Link to app](http://sjp2react-env.eba-2b275ndm.us-east-1.elasticbeanstalk.com/)
+
 Developed by:
 - Warren Lee (Team Lead)
 - Erick Cilia
