@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { IUser } from "../../models/User";
 import { useAppDispatch, useAppSelector } from "../../shared/Redux/hook";
 import { selectUser, setUser } from "../LoginBox/UserSlice";
@@ -10,14 +10,12 @@ function RegistrationBox() {
     const dispatch = useAppDispatch();
     const user = useAppSelector(selectUser);
     const [newUser, setNewUser] = useState<IUser>({
+        id: 0,
         name: "",
         email: "",
         username: "",
         password: "",
-        gold: 0,
-        games: [],
-        upgrades: [],
-        weapons: []
+        gold: 0
     });
     function updateName(event: React.ChangeEvent<HTMLInputElement>) {
         newUser.name = event.target.value;
@@ -42,7 +40,7 @@ function RegistrationBox() {
                 dispatch(setUser(response.data));
             })
     }
-    if (user.username !== "") return <Navigate replace to="/dashboard" />;
+    if (user.id > 0) return <Navigate replace to="/dashboard" />;
     else return <div id="registration_box" className="d-flex align-items-center justify-content-center">
         <form onSubmit={onSubmit} className="col-lg-4">
             <div className="form-group">
@@ -92,6 +90,7 @@ function RegistrationBox() {
                 </small>
             </div>
             <input type="submit" className="btn btn-primary" value="Submit" />
+            <Link to="/" className="btn btn-primary">Cancel</Link>
         </form>
     </div>;
 }
