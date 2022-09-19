@@ -125,17 +125,19 @@ function GameBox() {
     if (user.id < 1) return <Navigate replace to="/" />;
     else return <div className="box">
         <NavBar />
-        <div onClick={doTurn} className="row align-items-center justify-content-center content game">
-            <div className="col-md-12 text-center">
-                <div>{status}</div>
-                <div className="row align-items-center justify-content-center">
-                    <div className="col-md-6">
-                        <p>{character.class}</p>
-                        <p>Hit points: {character.hit_points}</p>
-                    </div>
-                    <div className="col-md-6">
-                        <p>{monster.name}</p>
-                        <p>Hit points: {monster.hit_points}</p>
+        <div className="container">
+            <div onClick={doTurn} className="row align-items-center justify-content-center content game">
+                <div className="col-md-12 text-center">
+                    <div>{status}</div>
+                    <div className="row align-items-center justify-content-center">
+                        <div className="col-md-6">
+                            <p>{character.class}</p>
+                            <p>Hit points: {character.hit_points}</p>
+                        </div>
+                        <div className="col-md-6">
+                            <p>{monster.name}</p>
+                            <p>Hit points: {monster.hit_points}</p>
+                        </div>
                     </div>
                 </div>
             </div>
