@@ -9,9 +9,6 @@ export interface IUser {
     username: string,
     password: string,
     gold: number
-    games: IGame[],
-    upgrades: IUpgrade[],
-    weapons: IWeapon[]
 }
 
 export interface ILoginInfo {

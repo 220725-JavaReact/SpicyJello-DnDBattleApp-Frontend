@@ -15,10 +15,7 @@ function RegistrationBox() {
         email: "",
         username: "",
         password: "",
-        gold: 0,
-        games: [],
-        upgrades: [],
-        weapons: []
+        gold: 0
     });
     function updateName(event: React.ChangeEvent<HTMLInputElement>) {
         newUser.name = event.target.value;

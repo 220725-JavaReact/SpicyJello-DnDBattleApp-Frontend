@@ -8,10 +8,7 @@ const initialState: IUser = {
     email: "",
     username: "",
     password: "",
-    gold: 0,
-    games: [],
-    upgrades: [],
-    weapons: []
+    gold: 0
 };
 const userSlice = createSlice({
     name: "user",
@@ -24,9 +21,6 @@ const userSlice = createSlice({
             state.username = action.payload.username;
             state.password = action.payload.password;
             state.gold = action.payload.gold;
-            state.games = action.payload.games;
-            state.upgrades = action.payload.upgrades;
-            state.weapons = action.payload.weapons;
         },
         resetUser: (state) => {
             state.id = 0;
@@ -35,9 +29,6 @@ const userSlice = createSlice({
             state.username = "";
             state.password = "";
             state.gold = 0;
-            state.games = [];
-            state.upgrades = [];
-            state.weapons = [];
         }
     }
 });
