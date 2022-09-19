@@ -125,7 +125,7 @@ function GameBox() {
     if (user.id < 1) return <Navigate replace to="/" />;
     else return <div className="box">
         <NavBar />
-        <div onClick={doTurn} className="row align-items-center justify-content-center content">
+        <div onClick={doTurn} className="row align-items-center justify-content-center content game">
             <div className="col-md-12 text-center">
                 <div>{status}</div>
                 <div className="row align-items-center justify-content-center">
