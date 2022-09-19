@@ -1,8 +1,8 @@
-import { IGame } from "./Game";
-
 export interface IMonster {
-    id: number,
-    game: IGame,
+    id?: number,
+    game?: {
+        id?: number
+    },
     source: string,
     modifier: string
 }
