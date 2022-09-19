@@ -10,22 +10,16 @@ function NavBar() {
         dispatch(resetUser());
     }
     if (user.username === "") return <Navigate replace to="/" />;
-    else return <nav className="navbar">
+    else return <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
             <div className="navbar-header">
                 <Link to="/dashboard" className="navbar-brand">DnD Battle App</Link>
             </div>
-            <ul className="nav navbar-nav">
-                <li className="nav-item">
-                    <Link to="/upgrades" className="nav-link disabled">({user.gold} gp) Upgrades</Link>
-                </li>
-                <li className="nav-item">
-                    <Link to="/settings" className="nav-link disabled">Settings</Link>
-                </li>
-                <li className="nav-item">
-                    <Link to="/" onClick={logout} className="nav-link">Logout</Link>
-                </li>
-            </ul>
+            <div className="nav navbar-nav">
+                <Link to="/upgrades" className="nav-item nav-link disabled">({user.gold} gp) Upgrades</Link>
+                <Link to="/settings" className="nav-item nav-link disabled">Settings</Link>
+                <Link to="/" onClick={logout} className="nav-item nav-link">Logout</Link>
+            </div>
         </div>
     </nav>;
 }
