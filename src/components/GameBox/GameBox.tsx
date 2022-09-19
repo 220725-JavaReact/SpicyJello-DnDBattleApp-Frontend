@@ -2,12 +2,14 @@ import axios from "axios";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { IGame } from "../../models/Game";
-import { IAPIMonster, IMonster, IMonsterAction, IMonsterResults } from "../../models/Monster";
+import { IAPIMonster, IMonster, IMonsterResults } from "../../models/Monster";
+import { IUser } from "../../models/User";
 import NavBar from "../../shared/NavBar/NavBar";
-import { useAppSelector } from "../../shared/Redux/hook";
-import { selectUser } from "../LoginBox/UserSlice";
+import { useAppDispatch, useAppSelector } from "../../shared/Redux/hook";
+import { selectUser, setUser } from "../LoginBox/UserSlice";
 
 function GameBox() {
+    const dispatch = useAppDispatch();
     const user = useAppSelector(selectUser);
     const [character, setCharacter] = useState({
         class: "Fighter",
@@ -28,8 +30,9 @@ function GameBox() {
     const [enemiesKilled, setKills] = useState<number>(0);
     const [status, setStatus] = useState("");
     const [game, setGame] = useState<IGame>({
-        id: 0,
-        user: user,
+        user: {
+            id: user.id
+        },
         score: 0,
         gold: 0,
         monsters: []
@@ -58,7 +61,23 @@ function GameBox() {
     }
     function doTurn() {
         if (character.hit_points < 1) {
-            axios.post<IGame>("http://spicyjellodndbattleappbe-eb-env.eba-k3zphm3n.us-east-1.elasticbeanstalk.com/api/games", game);
+            axios.post<IGame>("http://spicyjellodndbattleappbe-eb-env.eba-k3zphm3n.us-east-1.elasticbeanstalk.com/api/games", game)
+                .then(response => {
+                    game.monsters.map((monster) => {
+                        if (response.data.id != undefined) {
+                            monster.game = {
+                                id: response.data.id
+                            };
+                            axios.post<IMonster>("http://spicyjellodndbattleappbe-eb-env.eba-k3zphm3n.us-east-1.elasticbeanstalk.com/api/monsters", monster);
+                        }
+                    });
+                });
+            let updateUser: IUser = structuredClone(user);
+            updateUser.gold += game.gold;
+            axios.put<IUser>("http://spicyjellodndbattleappbe-eb-env.eba-k3zphm3n.us-east-1.elasticbeanstalk.com/api/users", updateUser)
+                .then(response3 => {
+                    dispatch(setUser(response3.data));
+                })
             setStatus("Game over");
             return;
         }
@@ -68,8 +87,6 @@ function GameBox() {
             return;
         } else if (monster.hit_points < 1) {
             const gameMonster: IMonster = {
-                id: 0,
-                game: game,
                 source: monster.url,
                 modifier: ""
             };

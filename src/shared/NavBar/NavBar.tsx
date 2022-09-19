@@ -17,7 +17,7 @@ function NavBar() {
             </div>
             <ul className="nav navbar-nav">
                 <li className="nav-item">
-                    <Link to="/upgrades" className="nav-link disabled">Upgrades</Link>
+                    <Link to="/upgrades" className="nav-link disabled">({user.gold} gp) Upgrades</Link>
                 </li>
                 <li className="nav-item">
                     <Link to="/settings" className="nav-link disabled">Settings</Link>
